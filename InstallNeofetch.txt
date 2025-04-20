@@ -1,0 +1,74 @@
+Neofetch Installation Guide
+
+This document covers installing Neofetch on Windows (using WinGet) and Raspberry Pi OS (Debian‑based), and how to force the Raspberry Pi logo.
+
+Windows Installation (WinGet)
+
+Open PowerShell or Command Prompt
+Press Start, type PowerShell, and press Enter. No admin rights needed unless prompted.
+
+Install Neofetch
+winget install neofetch
+If WinGet cannot find the package, run:
+winget install --id nepnep.neofetch-win
+
+Run Neofetch
+neofetch
+
+(Optional) Auto‑run on session start
+if (!(Test-Path -Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
+Add-Content $PROFILE 'Set-Alias neofetch neofetch'
+
+Raspberry Pi OS Installation (Debian-based)
+
+Update package list
+sudo apt update
+
+Install Neofetch
+sudo apt install -y neofetch
+
+Run Neofetch
+neofetch
+
+(Optional) Auto‑run on terminal startup
+echo "neofetch" >> ~/.bashrc
+
+Customizing the Raspberry Pi Logo
+
+By default, Neofetch may display the Debian logo on Raspberry Pi OS. To force the Raspberry Pi logo:
+
+3.1 Runtime Override
+Run:
+neofetch --ascii_distro raspbian
+
+3.2 Permanent Configuration
+Create the config directory:
+mkdir -p ~/.config/neofetch
+
+Copy the default config into your home folder:
+cp /usr/share/neofetch/config/config.conf ~/.config/neofetch/config.conf
+
+If the path differs, locate it with:
+dpkg -L neofetch | grep config.conf
+
+Edit the config file:
+nano ~/.config/neofetch/config.conf
+Find the line:
+
+ascii_distro="auto"
+
+Change it to:
+ascii_distro="raspbian"
+Save and exit.
+
+Run Neofetch to confirm the Raspberry Pi logo appears:
+neofetch
+
+3.3 Shell Alias (Alternative)
+Add an alias instead of editing the config:
+echo 'alias neofetch="neofetch --ascii_distro raspbian"' >> ~/.bashrc
+
+Reload your shell:
+source ~/.bashrc
+
+End of guide.
