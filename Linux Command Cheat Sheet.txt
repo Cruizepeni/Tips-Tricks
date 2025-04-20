@@ -1,0 +1,75 @@
+Linux Command Cheat Sheet
+
+System Information
+- `hostname -I` - Display IP address
+- `uname -a` - View system information
+- `neofetch` - Display system info with distro logo
+- `lsb_release -a` - Display Linux distro information
+
+System Control
+- `sudo reboot` - Restart system immediately
+- `sudo shutdown now` - Shutdown system immediately
+- `sudo shutdown -r +10` - Reboot in 10 minutes
+- `sudo shutdown -h +10` - Shutdown in 10 minutes
+
+Package Management (Ubuntu/Debian)
+- `sudo apt update` - Refresh package repository lists
+- `sudo apt upgrade -y` - Upgrade installed packages automatically
+- `sudo apt install <package>` - Install a package
+- `sudo apt remove <package>` - Remove a package
+- `sudo apt autoremove` - Remove unused dependencies
+- `sudo dpkg -l | grep <package>` - List installed packages matching a keyword
+
+Disk & Filesystem
+- `df -h` - View disk space usage in human-readable format
+- `lsblk` - List all storage devices
+- `mount` - Show currently mounted filesystems
+- `du -sh <directory>` - View size of a directory
+- `ls -la` - List all files in current directory with details
+
+File Operations
+- `cd <directory>` - Change current directory
+- `cp <source> <destination>` - Copy files/directories
+- `mv <source> <destination>` - Move/rename files/directories
+- `rm <file>` - Delete a file
+- `rm -r <directory>` - Recursively delete a directory
+- `mkdir <directory>` - Create a new directory
+
+Network & Connectivity
+- `ping <host/IP>` - Check connectivity to host/IP
+- `ifconfig` or `ip addr` - Display network interfaces and IP addresses
+- `sudo netplan apply` - Apply netplan configuration changes (Ubuntu)
+- `sudo systemctl restart NetworkManager` - Restart networking service (Ubuntu desktop)
+
+Process Management
+- `top` or `htop` - Monitor active processes
+- `ps aux` - List all running processes
+- `kill <PID>` - Terminate a process by PID
+- `killall <process_name>` - Terminate all processes by name
+
+System Logs
+- `dmesg` - Display kernel messages
+- `journalctl -xe` - View recent system logs
+- `tail -f /var/log/syslog` - Continuously monitor system logs (Ctrl+C to exit)
+
+User & Permissions
+- `whoami` - Display current user
+- `sudo useradd <username>` - Add new user
+- `sudo passwd <username>` - Set or change user's password
+- `chmod +x <file>` - Make a file executable
+- `chown <user>:<group> <file>` - Change file ownership
+
+Text Editors
+- `nano <file>` - Open file in nano editor (Ctrl+O to save, Ctrl+X to exit)
+- `vim <file>` - Open file in vim editor (`:wq` to save and exit)
+
+Finding Files
+- `find / -name <filename>` - Search entire system for file
+- `grep -r "<text>" <directory>` - Search recursively for text in files
+
+Miscellaneous
+- `clear` - Clear terminal screen
+- `history` - Display command history
+- `alias ll='ls -lah'` - Create alias for frequently used commands
+
+End of Cheat Sheet.
