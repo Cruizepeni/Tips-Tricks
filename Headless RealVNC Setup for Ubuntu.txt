@@ -1,0 +1,63 @@
+Headless RealVNC Setup for Ubuntu
+
+This document describes how to set up Ubuntu for headless operation using RealVNC Server and a dummy video driver.
+
+Install the Dummy Video Driver
+
+Update package list and install the dummy video driver:
+sudo apt update
+sudo apt install -y xserver-xorg-video-dummy
+
+Create a Dummy Xorg Configuration
+
+Create configuration directory:
+sudo mkdir -p /etc/X11/xorg.conf.d
+
+Create and edit the dummy configuration file:
+sudo nano /etc/X11/xorg.conf.d/10-headless.conf
+
+Paste the following configuration:
+Section "Monitor"
+    Identifier "VirtualMonitor"
+    HorizSync 28.0-80.0
+    VertRefresh 48.0-75.0
+    Modeline "1920x1080_60.00" 172.80 1920 2040 2248 2576 1080 1081 1084 1118 -HSync +Vsync
+EndSection
+
+Section "Device"
+    Identifier "VirtualDevice"
+    Driver "dummy"
+    VideoRam 256000
+EndSection
+
+Section "Screen"
+    Identifier "VirtualScreen"
+    Device "VirtualDevice"
+    Monitor "VirtualMonitor"
+    DefaultDepth 24
+    SubSection "Display"
+        Depth 24
+        Modes "1920x1080_60.00"
+    EndSubSection
+EndSection
+
+Save the file:
+Press Ctrl+O, then Enter, and Ctrl+X to exit nano.
+
+Disable Wayland (If Applicable)
+
+Wayland may interfere with headless RealVNC setups. Disable it by editing GDM config:
+sudo nano /etc/gdm3/custom.conf
+
+Uncomment or add the following line:
+WaylandEnable=false
+
+Save and exit:
+Press Ctrl+O, then Enter, and Ctrl+X.
+
+Reboot the System
+
+Apply all changes by rebooting:
+sudo reboot
+
+After reboot, your Ubuntu system will be ready for headless RealVNC operation.
